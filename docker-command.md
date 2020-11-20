@@ -29,8 +29,11 @@ See the [docs](https://docs.docker.com/compose/reference/down/) to choose the op
   ```
 - Remove all container and images
   ```
+  $ docker rm -f CONTAINER_ID
+  $ docker rm $(docker ps -q -a) -f
   $ docker rm $(docker ps -q -a) -f
   $ docker rmi $(docker images -q) -f
+  $ docker container prune
   ```
 ## List docker container
 
