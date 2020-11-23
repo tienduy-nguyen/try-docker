@@ -8,6 +8,10 @@
     "dev": "nodemon index.js"
   },
   "dependencies": {
-    "express": "*"
+    "express": "*",
+    "nodemon": "*",
+    "dotenv": "*",
+    "mongoose": "*",
+    "axios": "*"
   }
 }

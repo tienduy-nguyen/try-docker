@@ -1,0 +1,22 @@
+# Specify a base image
+FROM node:12.18.1
+ENV NODE_ENV=production
+
+# Create app directory
+WORKDIR /app
+
+# Install app dependencies
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+# where available (npm@5+)
+COPY package*.json ./
+
+# Install dependencies
+RUN yarn install
+
+# Bundle app source
+COPY . .
+
+EXPOSE 8080
+
+# Default command
+CMD [ "yarn", "dev" ]
