@@ -179,6 +179,8 @@
   ```s
   # Enter the container
   $ docker exec -it <container id> /bin/bash
+  # or
+  $ docker exec -it <container id> sh
   ```
 - Test your Docker container
   To test your app, get the port of your app that Docker mapped:
