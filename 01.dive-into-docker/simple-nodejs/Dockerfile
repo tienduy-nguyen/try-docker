@@ -3,7 +3,7 @@ FROM node:12.18.1
 ENV NODE_ENV=production
 
 # Create app directory
-WORKDIR /app
+WORKDIR /usr/src/app
 
 # Install app dependencies
 # A wildcard is used to ensure both package.json AND package-lock.json are copied

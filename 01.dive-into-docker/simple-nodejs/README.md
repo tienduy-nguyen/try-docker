@@ -155,7 +155,11 @@
   Running your image with `-d` runs the container in detached mode, leaving the container running in the background. The `-p` flag redirects a public port to a private port inside the container. Run the image you previously built:
 
   ```s
-  $ docker run -p 49160:8080 -d <your username>/node-docker
+  $ docker run -p 8080:8080 -it -d <your username>/node-docker
+  # or just simply
+
+  $ docker run -p 8080:8080 -it <yourname>/node-docker
+
   ```
 
   Print the output of your app:
@@ -183,7 +187,7 @@
 
   # Example
   ID            IMAGE                                COMMAND    ...   PORTS
-  ecce33b30ebf  <your username>/node-docker:latest  npm start  ...   49160->8080
+  ecce33b30ebf  <your username>/node-docker:latest  npm start  ...   8080->8080
   ```
 
   In the example above, Docker mapped the 8080 port inside of the container to the port 49160 on your machine.
@@ -191,7 +195,7 @@
   Now you can call your app using curl (install if needed via: sudo apt-get install curl):
 
   ```s
-  $ curl -i localhost:49160
+  $ curl -i localhost:8080
 
   HTTP/1.1 200 OK
   X-Powered-By: Express
