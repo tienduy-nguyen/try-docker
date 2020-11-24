@@ -19,4 +19,36 @@
 
   This is a long command line --> to solve this problem, we will use docker-compose.
 
+  Check more about [docker volumes - vi](https://daothaison.me/docker-3-tim-hieu-ve-docker-phan-3-daothaison1560923507)
+  
+
 ## Docker compose
+-Create `docker-compose.yml`
+  ```yml
+  version: '3.8'
+  services:
+    web:
+      build:
+        context: .
+        dockerfile: Dockerfile.dev #specify Dockerfile to run
+      ports:
+        - '3000:3000'
+      volumes:
+        - /app/node_modules #It means do not try map a folder up against app/node_modules
+        - .:/app #map outside of container to the folder inside of container
+
+
+  ```
+
+- Build and run
+  ```s
+  $ docker-compose up
+  ```
+**Note**: When we use docker-compose, do we need copy in Dockerfile? yes.
+
+## Executing test
+- Get image id
+- Command
+  ```s
+  $ docker run -it b7f2b3c406ea yarn test
+  ```
