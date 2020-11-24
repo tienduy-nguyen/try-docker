@@ -9,3 +9,11 @@ services:
     volumes:
       - /app/node_modules #It means do not try map a folder up against app/node_modules
       - .:/app #map outside of container to the folder inside of container
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - app/node_modules
+      - .:/app
+    command: ['npm', 'test']

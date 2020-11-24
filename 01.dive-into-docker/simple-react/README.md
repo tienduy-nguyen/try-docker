@@ -52,3 +52,38 @@
   ```s
   $ docker run -it b7f2b3c406ea yarn test
   ```
+- Live updating test
+  - Get id container running: `docker ps`
+  - Execute directly command test
+  ```s
+  $ docker exec -it b7f2b3c406ea yarn test
+  ```
+- Docker compose for running tests
+  - We will create the new service `tests` in `docker-compose.yml` file
+    ```yml
+    version: '3.8'
+    services:
+      web:
+        build:
+          context: .
+          dockerfile: Dockerfile.dev #specify Dockerfile to run
+        ports:
+          - '3000:3000'
+        volumes:
+          - /app/node_modules #It means do not try map a folder up against app/node_modules
+          - .:/app #map outside of container to the folder inside of container
+      tests:
+        build:
+          context: .
+          dockerfile: Dockerfile.dev
+        volumes:
+          - app/node_modules
+          - .:/app
+        command: ['npm', 'test']
+
+    ```
+  - Build & Run command
+    ```s
+    $ docker-compose up --build
+    ```
+    When we build with docker-compose, all the services declared will be run. In this app: service **web** and service **tests** will be run with command `docker-compose up --build`
