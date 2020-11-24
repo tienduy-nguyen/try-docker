@@ -17,7 +17,7 @@ There are two way to install docker-compose for ubuntu.
   $ docker-compose version
   ```
 
-### 2. Install the lastest docker-compose version from the official git repository
+### 2. Install the latest docker-compose version from the official git repository
 
 - At the time of this writing, the most current stable version is `1.26.0`.
 
