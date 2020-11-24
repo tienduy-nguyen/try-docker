@@ -1,0 +1,12 @@
+{
+  "license": "MIT",
+  "dependencies": {
+    "express": "*",
+    "redis": "*",
+    "nodemon": "*"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  }
+}

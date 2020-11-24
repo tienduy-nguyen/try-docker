@@ -1,0 +1,9 @@
+version: '3' #version of docker-compose
+services: # declare containers used
+  redis-server: #image of redis
+    image: 'redis'
+  node-app: #images of node (using Dockerfile, package.json ...)
+    restart: always #If this container stops for any reason, always attempt to restart it
+    build: .
+    ports:
+      - '8080:8080'
