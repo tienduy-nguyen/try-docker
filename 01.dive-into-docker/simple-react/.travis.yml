@@ -1,0 +1,28 @@
+language: generic
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - docker build -t tienduynguyen/simple-docker-react -f Dockerfile.dev .
+  # docker build -t <username docker>/<name  image> -f <Dockerfile>
+
+script:
+  - docker run -e CI=true -it tienduynguyen/simple-docker-react yarn test --coverage
+
+branches:
+  only:
+    - master
+
+deploy:
+  provider: elasticbeanstalk
+  region: eu-west-3
+  app: $AWS_EB_APP
+  env: $AWS_EB_ENV
+  bucket_name: $AWS_BUCKER_NAME
+  bucket_path: react-docker
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
