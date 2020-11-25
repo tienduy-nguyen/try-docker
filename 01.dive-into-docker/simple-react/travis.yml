@@ -1,0 +1,9 @@
+sudo: required
+services: -docker
+
+before_install:
+  - docker build -t tienduynguyen/simple-docker-react -f Dockerfile.dev .
+  # docker build -t <username docker>/<name  image> -f <Dockerfile>
+
+script:
+  - docker run tienduynguyen/simple-docker-react yarn test -- --coverage

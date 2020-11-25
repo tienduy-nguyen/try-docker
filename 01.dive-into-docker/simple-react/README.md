@@ -122,3 +122,29 @@
   $ docker run -p 8080:80 <id image>
 
   ```
+## Travis CI setup in GitHub repo
+### Create account travis-ci
+- Sign-in  [travis-ci.org](https://travis-ci.org) with your account Github
+- Go to [travis-ci.org/account/repositories](https://travis-ci.org/account/repositories) and check run for the repository what we need to deploy automatically with travis-ci
+### Configuration
+We will use a Travis YML file Configuration: `travis.yml`
+
+This file:
+- Tell Travis wee need a copy of docker running
+- Build our image using Dockerfile.dev
+- Tell Travis how to run our test suite
+- Tell Travis how to deploy our code to AWS
+
+```yml
+# travis.yml
+sudo: required
+services: -docker
+
+before_install:
+  - docker build -t tienduynguyen/simple-docker-react -f Dockerfile.dev .
+  # docker build -t <username docker>/<name  image> -f <Dockerfile>
+
+script:
+  - docker run -it tienduynguyen/simple-docker-react yarn test -- --coverage
+
+```
