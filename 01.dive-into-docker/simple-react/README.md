@@ -79,7 +79,7 @@
         volumes:
           - app/node_modules
           - .:/app
-        command: ['npm', 'test']
+        command: ['yarn', 'test']
 
     ```
   - Build & Run command
@@ -87,3 +87,38 @@
     $ docker-compose up --build
     ```
     When we build with docker-compose, all the services declared will be run. In this app: service **web** and service **tests** will be run with command `docker-compose up --build`
+
+## Work with nginx
+- Build phase process
+  - Use node:alpine
+  - Copy the package.json file
+  - Install dependencies
+  - Run `yarn build`
+- Run phase
+  - Use nginx
+  - Copy over the result of `yarn build`
+  - Start nginx
+- Create **Dockerfile**
+  ```yml
+  FROM node:12.18-alpine
+
+  WORKDIR /app
+
+  COPY package*.json ./
+
+  RUN yarn build
+
+  # Image of nginx
+  FROM nginx
+  EXPOSE 80
+
+  COPY --from=builder /app/build /usr/share/nginx/html
+  # Check image iginx for more details
+  # https://hub.docker.com/_/nginx
+  ```
+- Build and run
+  ```s
+  $ docker build .
+  $ docker run -p 8080:80 <id image>
+
+  ```
