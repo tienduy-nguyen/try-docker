@@ -1,13 +1,39 @@
 version: '3.8'
 services:
   postgres:
-    image: postgres:latest
+    image: 'postgres:latest'
+    container_name: postgres-calculator
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_HOST=postgres
+      - POSTGRES_DB=calculator_db
+      - POSTGRES_PORT=5432
+
   redis:
     image: redis:latest
-  server:
+    container_name: redis-calculator
+  nginx:
+    container_name: nginx-calculator
+    restart: always
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./nginx
+    ports:
+      - '3050:80'
+  api:
     build:
       dockerfile: Dockerfile.dev
       context: ./server
     volumes:
       - /app/node_modules
       - ./server:/app
+    container_name: server_calculator
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379 # default redis port
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_HOST=postgres
+      - POSTGRES_DB=calculator_db
+      - POSTGRES_PORT=5432

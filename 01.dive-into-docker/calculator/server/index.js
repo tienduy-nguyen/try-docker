@@ -1,27 +1,31 @@
-const keys = require('./keys');
-
-// Express App Setup
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const { Pool } = require('pg');
+const keys = require('./keys');
 
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-// Postgres Client Setup
-const { Pool } = require('pg');
-const pgClient = new Pool({
+const pool = new Pool({
   user: keys.pgUser,
-  host: keys.pgHost,
-  database: keys.pgDatabase,
   password: keys.pgPassword,
+  host: keys.pgHost,
   port: keys.pgPort,
+  database: keys.pgDatabase,
 });
-pgClient.on('error', () => console.log('Lost PG connection'));
 
-pgClient
+pool.on('error', (err, client) => {
+  console.error('Unexpected error on idle client', err);
+  process.exit(-1);
+});
+
+pool
   .query('CREATE TABLE IF NOT EXISTS values (number INT)')
+  .then((res) => {
+    console.log('Table is successfully created');
+  })
   .catch((err) => console.log(err));
 
 // Redis Client Setup
@@ -40,7 +44,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/values/all', async (req, res) => {
-  // const values = await pgClient.query('SELECT * from values');
+  // const values = await pool.query('SELECT * from values');
 
   res.send([1, 2, 3]);
 });
@@ -60,11 +64,11 @@ app.post('/values', async (req, res) => {
 
   redisClient.hset('values', index, 'Nothing yet!');
   redisPublisher.publish('insert', index);
-  pgClient.query('INSERT INTO values(number) VALUES($1)', [index]);
+  pool.query('INSERT INTO values(number) VALUES($1)', [index]);
 
   res.send({ working: true });
 });
 
 app.listen(5000, (err) => {
-  console.log('Listening');
+  console.log('Listening on port 5000');
 });
