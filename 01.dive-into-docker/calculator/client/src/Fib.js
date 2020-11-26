@@ -59,7 +59,7 @@ export const Fib = () => {
     <div>
       <form onSubmit={onSubmit}>
         <label>Enter your index:</label>
-        <input value={this.state.index} onChange={(e) => onChange(e)} />
+        <input value={index} onChange={(e) => onChange(e)} />
         <button>Submit</button>
       </form>
 
