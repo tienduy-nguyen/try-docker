@@ -16,3 +16,12 @@ Project using:
   - Listen on port 80
   - If anyone comes to '/' send them to client upstream
   - If anyone come to '/api', send them to server upstream
+
+## Deploy AWS
+- Create Environment for ElasticBeansTalk AWS
+- Using Virtual Private Cloud (VPC AWS)
+- Using Database PostgreSQL (RDS AWS)
+- Elastic Cache Redis AWS
+- Creating custom security group AWS (VPC)
+- Add custom security group to Elastic Cache
+- Add custom security group to Database RDS

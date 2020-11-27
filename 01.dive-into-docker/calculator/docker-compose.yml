@@ -7,7 +7,7 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_HOST=postgres
-      - POSTGRES_DB=calculator_db
+      - POSTGRES_DB=multi-docker-db
       - POSTGRES_PORT=5432
 
   redis:
@@ -35,7 +35,7 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_HOST=postgres
-      - POSTGRES_DB=calculator_db
+      - POSTGRES_DB=multi-docker-db
       - POSTGRES_PORT=5432
   worker:
     build:
