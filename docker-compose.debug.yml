@@ -1,0 +1,17 @@
+# Please refer https://aka.ms/HTTPSinContainer on how to setup an https developer certificate for your ASP .NET Core service.
+
+version: '3.4'
+
+services:
+  simplemicroservice:
+    image: simplemicroservice
+    build:
+      context: .
+      dockerfile: docker-dotnet/simple-microservice/Dockerfile
+    ports:
+      - 1886
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:1886
+    volumes:
+      - ~/.vsdbg:/remote_debugger:rw

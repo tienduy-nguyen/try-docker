@@ -1,11 +1,10 @@
-version: '3.7'
+version: '3.4'
+
 services:
-  web:
+  simplemicroservice:
+    image: simple-microservice:lastest
     build:
       context: .
-      dockerfile: Dockerfile #specify Dockerfile to run
+      dockerfile: Dockerfile
     ports:
-      - '1886:1886'
-    volumes:
-      - /app/node_modules #It means do not try map a folder up against app/node_modules
-      - .:/app #map outside of container to the folder inside of container
+      - '5000:80'
