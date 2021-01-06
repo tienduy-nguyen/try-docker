@@ -11,7 +11,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 
-namespace simple_microservice {
+namespace SimpleMicroservice {
   public class Startup {
     public Startup (IConfiguration configuration) {
       Configuration = configuration;
@@ -24,7 +24,7 @@ namespace simple_microservice {
 
       services.AddControllers ();
       services.AddSwaggerGen (c => {
-        c.SwaggerDoc ("v1", new OpenApiInfo { Title = "simple_microservice", Version = "v1" });
+        c.SwaggerDoc ("v1", new OpenApiInfo { Title = "SimpleMicroservice", Version = "v1" });
       });
     }
 
@@ -33,12 +33,10 @@ namespace simple_microservice {
       if (env.IsDevelopment ()) {
         app.UseDeveloperExceptionPage ();
         app.UseSwagger ();
-        app.UseSwaggerUI (
-          c => {
-            c.SwaggerEndpoint ("/swagger/v1/swagger.json", "simple_microservice v1");
-            c.RoutePrefix = string.Empty;
-          }
-        );
+        app.UseSwaggerUI (c => {
+          c.SwaggerEndpoint ("/swagger/v1/swagger.json", "SimpleMicroservice v1");
+          c.RoutePrefix = string.Empty;
+        });
       }
 
       app.UseRouting ();

@@ -591,9 +591,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/mnt/workspace/01-Gits/15-Docker/try-docker/docker-dotnet/simple-microservice/simple-microservice.csproj",
-      "projectName": "simple-microservice",
-      "projectPath": "/mnt/workspace/01-Gits/15-Docker/try-docker/docker-dotnet/simple-microservice/simple-microservice.csproj",
+      "projectUniqueName": "/mnt/workspace/01-Gits/15-Docker/try-docker/docker-dotnet/simple-microservice/SimpleMicroservice.csproj",
+      "projectName": "SimpleMicroservice",
+      "projectPath": "/mnt/workspace/01-Gits/15-Docker/try-docker/docker-dotnet/simple-microservice/SimpleMicroservice.csproj",
       "packagesPath": "/home/tienduy/.nuget/packages/",
       "outputPath": "/mnt/workspace/01-Gits/15-Docker/try-docker/docker-dotnet/simple-microservice/obj/",
       "projectStyle": "PackageReference",

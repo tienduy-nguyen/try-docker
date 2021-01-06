@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Ht38xqeEHjO1YnHqgo7cbOwSPROADezvPeZTnKpBirqiSf2uTE7odUbT6SB3Zm1SObEflPZz53A+w0C/xfkZQw==",
+  "dgSpecHash": "l9/VzezE9CO7hcY+IjLrPfyvxxTBCDsIbUkgehC/VgVaoIrwwk48vICFDuVFhX+1hUzBDM68dyY1nk6zzrmTjA==",
   "success": true,
-  "projectFilePath": "/mnt/workspace/01-Gits/15-Docker/try-docker/docker-dotnet/simple-microservice/simple-microservice.csproj",
+  "projectFilePath": "/mnt/workspace/01-Gits/15-Docker/try-docker/docker-dotnet/simple-microservice/SimpleMicroservice.csproj",
   "expectedPackageFiles": [
     "/home/tienduy/.nuget/packages/microsoft.aspnetcore.authentication.jwtbearer/5.0.1/microsoft.aspnetcore.authentication.jwtbearer.5.0.1.nupkg.sha512",
     "/home/tienduy/.nuget/packages/microsoft.aspnetcore.authentication.openidconnect/5.0.1/microsoft.aspnetcore.authentication.openidconnect.5.0.1.nupkg.sha512",

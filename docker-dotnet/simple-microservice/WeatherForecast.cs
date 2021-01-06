@@ -1,6 +1,6 @@
 using System;
 
-namespace simple_microservice
+namespace SimpleMicroservice
 {
     public class WeatherForecast
     {
