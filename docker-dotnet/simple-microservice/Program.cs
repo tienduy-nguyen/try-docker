@@ -18,9 +18,7 @@ namespace SimpleMicroservice {
       return Host.CreateDefaultBuilder (args)
         .ConfigureWebHostDefaults ((webBuilder) => {
           webBuilder.UseKestrel ();
-          webBuilder.UseContentRoot (Directory.GetCurrentDirectory ());
-          webBuilder.UseUrls ($"http://*:{HostPort}");
-          webBuilder.UseIISIntegration ();
+          webBuilder.UseUrls ($"http://localhost:5000");
 
           webBuilder.UseStartup<Startup> ();
         });
