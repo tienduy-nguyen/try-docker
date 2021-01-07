@@ -1,6 +1,7 @@
 import { Injectable, ConflictException } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { User as UserModel } from '@prisma/client';
+import { CreateUserDto, UpdateUserDto } from './dto';
 
 @Injectable()
 export class UserService {
@@ -60,7 +61,7 @@ export class UserService {
       );
     }
     return this.prismaService.user.create({
-      data: userDto,
+      data: { email: userDto.email, name: userDto.name },
     });
   }
 
@@ -68,8 +69,9 @@ export class UserService {
     id: number,
     userDto: UpdateUserDto,
   ): Promise<UserModel> {
+    console.log('----------------Update user', userDto);
     return await this.prismaService.user.update({
-      data: userDto,
+      data: { ...userDto },
       where: { id: Number(id) },
     });
   }
@@ -108,14 +110,4 @@ export type FindManyUserArgs = {
       email: 'asc';
     },
   ];
-};
-
-export type CreateUserDto = {
-  email: string;
-  name?: string | null;
-};
-
-export type UpdateUserDto = {
-  email?: string;
-  name?: string;
 };
