@@ -8,6 +8,7 @@ import {
   Put,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
+import { User } from '@prisma/client';
 import { CreateUserDto, UpdateUserDto } from './dto';
 import { UserService } from './user.service';
 
@@ -30,11 +31,11 @@ export class UserController {
     return await this.userService.createUser(userDto);
   }
 
-  @Put('/:userId')
+  @Put('/:id')
   public async updateUser(
-    @Param('userId') id: number,
+    @Param('id') id: number,
     @Body() userDto: UpdateUserDto,
-  ) {
+  ): Promise<User> {
     return await this.userService.updateUser(id, userDto);
   }
 

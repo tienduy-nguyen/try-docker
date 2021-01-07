@@ -61,7 +61,7 @@ export class UserService {
       );
     }
     return this.prismaService.user.create({
-      data: { email: userDto.email, name: userDto.name },
+      data: userDto,
     });
   }
 
@@ -69,9 +69,8 @@ export class UserService {
     id: number,
     userDto: UpdateUserDto,
   ): Promise<UserModel> {
-    console.log('----------------Update user', userDto);
     return await this.prismaService.user.update({
-      data: { ...userDto },
+      data: userDto,
       where: { id: Number(id) },
     });
   }
