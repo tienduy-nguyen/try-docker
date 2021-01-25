@@ -1,7 +1,8 @@
 import { Injectable, ConflictException } from '@nestjs/common';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaService } from 'src/common/prisma/prisma.service';
 import { User as UserModel } from '@prisma/client';
 import { CreateUserDto, UpdateUserDto } from './dto';
+import { UserWhereUniqueInput } from './user.types';
 
 @Injectable()
 export class UserService {
@@ -79,34 +80,3 @@ export class UserService {
     await this.prismaService.user.delete({ where: { id: Number(id) } });
   }
 }
-
-export type UserWhereUniqueInput = {
-  id?: number | null;
-  email?: string | null;
-};
-export type SortOrder = {
-  asc: 'asc';
-  desc: 'desc';
-};
-export type FindManyUserArgs = {
-  skip?: number;
-  take?: number;
-  include?: {
-    posts: {
-      orderBy: {
-        title: 'asc';
-      };
-      select: {
-        title: true;
-      };
-    };
-  };
-  orderBy?: [
-    {
-      id: 'asc';
-    },
-    {
-      email: 'asc';
-    },
-  ];
-};
