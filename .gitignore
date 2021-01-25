@@ -135,7 +135,9 @@ config/master.key
 # dotenv, dotenv-rails
 # TODO Comment out these rules if environment variables can be committed
 .env
-.env.*
+.env.local
+.env.development
+.env.production
 
 ## Environment normalization:
 /.bundle
