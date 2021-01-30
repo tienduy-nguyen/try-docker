@@ -35,14 +35,19 @@ services:
       - 3306:3306
     networks:
       - prisma_dev_network
+    logging:
+      driver: none
 
   adminer:
     image: adminer
+    container_name: adminer
     restart: always
     ports:
       - 8080:8080
     networks:
       - prisma_dev_network
+    logging:
+      driver: none
 
 
 volumes:

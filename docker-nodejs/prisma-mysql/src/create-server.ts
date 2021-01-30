@@ -19,12 +19,9 @@ export const createServer = ({ prisma }: CreateServerParams): Express => {
 
   server.post('/users', async (req, res) => {
     const { email } = req.body;
-
-    console.log(email);
-
     try {
-      await createUserAction({ prisma, email });
-      return res.status(200).send('ok');
+      const user = await createUserAction({ prisma, email });
+      return res.status(200).send(user);
     } catch (e) {
       res.status(403).send(e.message);
     }
