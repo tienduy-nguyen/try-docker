@@ -1,0 +1,54 @@
+version: "3.8"
+
+services:
+  server: 
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    environment:
+      SERVER_DATABASE_NAME: prisma_test_db
+      PRISMA_DATABASE_URL: mysql://root:root@database:3306/prisma_test_db?schema=public
+    ports:
+      - 1776:1776
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+      - ./package.json:/usr/src/app/package.json
+    depends_on:
+      - mysql
+    networks:
+      - prisma_test_network
+
+
+
+  mysql:
+    image: mysql:latest
+    container_name: mysql
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_PORT=3306
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - 3306:3306
+    networks:
+      - prisma_test_network
+
+  adminer:
+    image: adminer
+    container_name: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - prisma_test_network
+
+volumes:
+  mysql_data:
+    driver: local
+
+networks:
+  prisma_test_network:
+    driver: bridge
+    name: prisma_test_network
