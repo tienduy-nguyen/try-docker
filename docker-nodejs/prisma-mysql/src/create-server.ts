@@ -8,15 +8,25 @@ export interface CreateServerParams {
 
 export const createServer = ({ prisma }: CreateServerParams): Express => {
   const server = express();
+  server.use(express.json());
 
-  server.get('/new-user/:email', async (req, res) => {
-    const { email } = req.params;
+  server.get('/', (req, res) => {
+    return res.status(200).send('Hi there!');
+  });
+  server.get('/users', (req, res) => {
+    return res.status(200).send(['user1', 'user2']);
+  });
+
+  server.post('/users', async (req, res) => {
+    const { email } = req.body;
+
+    console.log(email);
 
     try {
       await createUserAction({ prisma, email });
       return res.status(200).send('ok');
     } catch (e) {
-      res.status(403).send(`Cannot create new user for email: ${email}`);
+      res.status(403).send(e.message);
     }
   });
 

@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile.test
     environment:
       SERVER_DATABASE_NAME: prisma_test_db
-      PRISMA_DATABASE_URL: mysql://root:root@database:3306/prisma_test_db?schema=public
+      PRISMA_DATABASE_URL: mysql://root:root@mysql:3306/prisma_test_db?schema=public
     ports:
       - 1776:1776
     volumes:

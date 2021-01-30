@@ -9,7 +9,7 @@ COPY package*.json yarn.lock ./
 COPY prisma ./prisma/
 
 RUN yarn install --frozen-lockfile
-RUN yarn prisma:generate
+RUN yarn prisma generate
 
 
 COPY . . 
