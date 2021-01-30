@@ -5,6 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.test
+    container_name: prisma_test_server
     environment:
       SERVER_DATABASE_NAME: prisma_test_db
       PRISMA_DATABASE_URL: mysql://root:root@mysql:3306/prisma_test_db?schema=public

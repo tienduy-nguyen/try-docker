@@ -5,6 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    container_name: prisma_dev_server
     environment:
       SERVER_DATABASE_NAME: prisma_dev_db
       PRISMA_DATABASE_URL: mysql://root:root@mysql:3306/prisma_dev_db?schema=public
