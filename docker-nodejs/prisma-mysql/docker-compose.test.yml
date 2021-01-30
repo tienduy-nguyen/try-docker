@@ -24,26 +24,32 @@ services:
 
   mysql:
     image: mysql:latest
-    container_name: mysql
+    container_name: mysql_test
     restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_PORT=3306
     volumes:
       - mysql_data:/var/lib/mysql
+    expose:
+      - 3307
     ports:
-      - 3306:3306
+      - 3307:3306
     networks:
       - prisma_test_network
+    logging:
+      driver: none
 
   adminer:
     image: adminer
-    container_name: adminer
+    container_name: adminer_test
     restart: always
     ports:
       - 8080:8080
     networks:
       - prisma_test_network
+    logging:
+      driver: none
 
 volumes:
   mysql_data:
