@@ -1,0 +1,15 @@
+{
+  "watch": [
+    "src",
+    ".env*"
+  ],
+  "ext": "js,ts,json",
+  "ignore": [
+    "src/**/*.spec.ts"
+  ],
+  "exec": "ts-node -r tsconfig-paths/register ./src/server.ts",
+  "events": {
+    "crash": "fuser -k 1776/tcp",
+    "restart": "fuser -k 1776/tcp"
+  }
+}
