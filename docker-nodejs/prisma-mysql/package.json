@@ -16,10 +16,12 @@
     "test:cov": "cross-env NODE_ENV=test jest --coverage",
     "test:debug": "cross-env NODE_ENV=test node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "cross-env NODE_ENV=test jest --config ./test/jest-e2e.json",
-    "docker:prisma:migratee": "docker-compose run --rm server yarn prisma:migrate",
+    "docker:build": "docker-compose -f docker-compose.yml build --no-cache",
+    "docker:prisma:migrate": "docker-compose run --rm server yarn prisma:migrate",
     "docker:test:build": "docker-compose -f docker-compose.test.yml build --no-cache",
-    "docker:test:prepare": "docker-compose -f docker-compose.test.yml run --rm server ./scripts/wait-for-it.sh database:3306 -- yarn ts-node src/prisma/reset.ts; docker-compose -f docker-compose.test.yml run --rm server yarn prisma:migrate",
-    "docker:test:run": "docker-compose -f docker-compose.test.yml run --rm server ./scripts/wait-for-it.sh database:3306 -- yarn test && yarn docker:test:prepare"
+    "docker:test:prepare": "docker-compose -f docker-compose.test.yml run --rm server ./scripts/wait-for-it.sh mysql:3306 -- yarn ts-node prisma/reset.ts; docker-compose -f docker-compose.test.yml run --rm server yarn prisma:migrate",
+    "docker:test:run": "docker-compose -f docker-compose.test.yml run --rm server ./scripts/wait-for-it.sh mysql:3306 -- yarn test && yarn docker:test:prepare",
+    "docker:test:noremove": "docker-compose -f docker-compose.test.yml run --rm server ./scripts/wait-for-it.sh mysql:3306 -- yarn test"
   },
   "devDependencies": {
     "@prisma/cli": "^2.15.0",
