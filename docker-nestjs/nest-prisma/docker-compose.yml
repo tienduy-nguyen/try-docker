@@ -9,6 +9,7 @@ services:
       - 3000:3000
     depends_on:
       - postgres
+      - prisma
     env_file:
       - .env
 
@@ -22,6 +23,24 @@ services:
       - .env
     volumes:
       - postgres:/var/lib/postgresql/data
+
+  prisma:
+    image: prismagraphql/prisma:latest
+    restart: always
+    ports:
+    - "4466:4466"
+    environment:
+      PRISMA_CONFIG: |
+        managementApiSecret: __YOUR_MANAGEMENT_API_SECRET__
+        port: __YOUR_PRISMA_SERVER_PORT__
+        databases:
+          default:
+            connector: __YOUR_DATABASE_CONNECTOR__
+            migrations: __ENABLE_DB_MIGRATIONS__
+            host: __YOUR_DATABASE_HOST__
+            port: __YOUR_DATABASE_PORT__
+            user: __YOUR_DATABASE_USER__
+            password: __YOUR_DATABASE_PASSWORD__
 
 volumes:
   postgres:
