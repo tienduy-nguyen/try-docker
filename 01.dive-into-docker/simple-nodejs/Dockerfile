@@ -1,5 +1,5 @@
 # Specify a base image
-FROM node:12.18.1
+FROM node:12.20.1
 ENV NODE_ENV=production
 
 # Create app directory
