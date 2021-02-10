@@ -1,4 +1,4 @@
-FROM ruby:2.7.1
+FROM ruby:2.7.2
 
 LABEL author.name="TienDuy" \
   author.email="tienduy.nguyen.dev@gmail.com" \
